@@ -39,11 +39,20 @@
             'Content-Type: application/json',
             "Authorization: Bearer {$channel_access_token}"
         );
-        
-        $post = array(
-            'replyToken' => $token,
-            'messages' => $messages
-        );
+        if($message == "mcserver"){
+            $file = fopen("https://ggmc.herokuapp.com/","r");
+            $message = fread($file,"1024");
+            fclose($file);
+            $post = array(
+                'replyToken' => $token,
+                'messages' => $messages
+            );
+        }else{
+            $post = array(
+                'replyToken' => $token,
+                'messages' => $messages
+            );
+        }
     
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_POST, true);
