@@ -26,7 +26,15 @@
     
     // LINE BOT Messages :: reply
     if($event_type == 'message'){
-        api_post_request($replay_token, $message['text']);
+        if($message['text'] == "mcserver"){
+            $test = "test";
+            //$file = fopen("https://ggmc.herokuapp.com/","r");
+            //$test = fread($file,"1024");
+            //fclose($file);
+            api_post_request($replay_token, $test);
+        }else{
+            api_post_request($replay_token, $message['text']);
+        }
     }else if($event_type == 'follow'){
         api_post_request($replay_token, $message['follow']);
     }
@@ -38,22 +46,12 @@
         $headers = array(
             'Content-Type: application/json',
             "Authorization: Bearer {$channel_access_token}"
-        );
-        if($message == "mcserver"){
-            //$file = fopen("https://ggmc.herokuapp.com/","r");
-            //$test = fread($file,"1024");
-            //fclose($file);
-            $test = "TEST";
-            $post = array(
-                'replyToken' => $token,
-                'messages' => $test
-            );
-        }else{
-            $post = array(
-                'replyToken' => $token,
-                'messages' => $messages
-            );
-        }
+        );        
+        
+        $post = array(
+            'replyToken' => $token,
+            'messages' => $messages
+        );   
     
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_POST, true);
