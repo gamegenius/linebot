@@ -40,12 +40,13 @@
             "Authorization: Bearer {$channel_access_token}"
         );
         if($message == "mcserver"){
-            $file = fopen("https://ggmc.herokuapp.com/","r");
-            $message = fread($file,"1024");
-            fclose($file);
+            //$file = fopen("https://ggmc.herokuapp.com/","r");
+            //$test = fread($file,"1024");
+            //fclose($file);
+            $test = "TEST";
             $post = array(
                 'replyToken' => $token,
-                'messages' => $messages
+                'messages' => $test
             );
         }else{
             $post = array(
