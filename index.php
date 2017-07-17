@@ -26,12 +26,11 @@
     
     // LINE BOT Messages :: reply
     if($event_type == 'message'){
-        if($message['text'][0]['text'] == "mcserver"){
-            $test = "test";
+        if($message['text'][0]['text'] == "mcserver"){            
+            $file = fopen("https://ggmc.herokuapp.com/","r");
+            $test = fread($file,"1024");
+            fclose($file);
             $message['text'][0]['text'] = $test;
-            //$file = fopen("https://ggmc.herokuapp.com/","r");
-            //$test = fread($file,"1024");
-            //fclose($file);
             api_post_request($replay_token, $message['text']);
         }else{
             api_post_request($replay_token, $message['text']);
