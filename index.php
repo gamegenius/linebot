@@ -26,7 +26,7 @@
     
     // LINE BOT Messages :: reply
     if($event_type == 'message'){
-        if($message['text'] == "mcserver"){
+        if($message['text'][0]['text'] == "mcserver"){
             $test = "test";
             //$file = fopen("https://ggmc.herokuapp.com/","r");
             //$test = fread($file,"1024");
